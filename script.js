@@ -1,67 +1,160 @@
 const currentPage = document.body.dataset.page;
-document.querySelectorAll(".main-nav a").forEach(link => {
+
+document.querySelectorAll(".main-nav a").forEach((link) => {
   const active = link.dataset.page === currentPage;
+
   link.classList.toggle("active", active);
-  if (active) link.setAttribute("aria-current", "page");
+
+  if (active) {
+    link.setAttribute("aria-current", "page");
+  }
 });
+
+
+// ------------------------------
+// MOBILE NAVIGATION
+// ------------------------------
 
 const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
+
 if (menuToggle && mainNav) {
   menuToggle.addEventListener("click", () => {
     const open = mainNav.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(open));
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      String(open)
+    );
   });
-  mainNav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
-    mainNav.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-  }));
+
+  mainNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mainNav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
 }
 
+
+// ------------------------------
+// INTERACTIVE OWL
+// ------------------------------
+
 const owl = document.querySelector("#owl");
-const owlHead = document.querySelector("#owlHead");
-const leftPupil = document.querySelector("#leftPupil");
-const rightPupil = document.querySelector("#rightPupil");
+const hero = document.querySelector(".hero");
 
-if (owl && owlHead && leftPupil && rightPupil) {
-  let resetTimer;
-  let rafId;
+if (owl && hero) {
 
-  const setEye = (el, baseX, baseY, dx, dy) => {
-    el.setAttribute("cx", baseX + dx);
-    el.setAttribute("cy", baseY + dy);
-  };
+  let targetX = 0;
+  let targetY = 0;
 
-  const follow = (x, y) => {
-    cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(() => {
-      const rect = owl.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height * 0.38;
+  let currentX = 0;
+  let currentY = 0;
 
-      const nx = Math.max(-1, Math.min(1, (x - cx) / Math.max(240, window.innerWidth * .42)));
-      const ny = Math.max(-1, Math.min(1, (y - cy) / Math.max(220, window.innerHeight * .42)));
+  let animationFrame;
 
-      owlHead.style.transform = `rotate(${nx * 15}deg) translate(${nx * 4}px, ${ny * 7}px)`;
-      setEye(leftPupil, 205, 216, nx * 9, ny * 7);
-      setEye(rightPupil, 315, 216, nx * 9, ny * 7);
-    });
 
-    clearTimeout(resetTimer);
-    resetTimer = setTimeout(resetOwl, 1500);
-  };
+  function animateOwl() {
 
-  const resetOwl = () => {
-    owlHead.style.transform = "rotate(0deg) translate(0,0)";
-    setEye(leftPupil, 205, 216, 0, 0);
-    setEye(rightPupil, 315, 216, 0, 0);
-  };
+    // Smooth movement
+    currentX += (targetX - currentX) * 0.07;
+    currentY += (targetY - currentY) * 0.07;
 
-  window.addEventListener("mousemove", e => follow(e.clientX, e.clientY), { passive: true });
-  window.addEventListener("mouseleave", resetOwl);
 
-  // Mobile/tablet: owl reacts gently to touch position.
-  window.addEventListener("touchmove", e => {
-    if (e.touches && e.touches[0]) follow(e.touches[0].clientX, e.touches[0].clientY);
-  }, { passive: true });
+    // Very small movement so the owl
+    // still looks like she is sitting
+    // naturally on the branch.
+
+    const moveX = currentX * 13;
+    const moveY = currentY * 7;
+
+    const rotate = currentX * 4;
+
+
+    owl.style.transform = `
+      translate3d(${moveX}px, ${moveY}px, 0)
+      rotate(${rotate}deg)
+    `;
+
+
+    animationFrame =
+      requestAnimationFrame(animateOwl);
+  }
+
+
+  function followCursor(event) {
+
+    const heroRect =
+      hero.getBoundingClientRect();
+
+
+    const mouseX =
+      event.clientX - heroRect.left;
+
+    const mouseY =
+      event.clientY - heroRect.top;
+
+
+    targetX =
+      (mouseX / heroRect.width - 0.5) * 2;
+
+    targetY =
+      (mouseY / heroRect.height - 0.5) * 2;
+
+
+    // Prevent excessive movement
+
+    targetX =
+      Math.max(-1, Math.min(1, targetX));
+
+    targetY =
+      Math.max(-1, Math.min(1, targetY));
+  }
+
+
+  // Follow mouse
+  hero.addEventListener(
+    "mousemove",
+    followCursor
+  );
+
+
+  // Return to original position
+  hero.addEventListener(
+    "mouseleave",
+    () => {
+
+      targetX = 0;
+      targetY = 0;
+
+    }
+  );
+
+
+  // Gentle touch response for tablets/mobile
+  hero.addEventListener(
+    "touchmove",
+    (event) => {
+
+      if (!event.touches.length) return;
+
+      followCursor(event.touches[0]);
+
+    },
+    { passive: true }
+  );
+
+
+  // Start animation
+  animateOwl();
+
+
+  // Stop unnecessary animation
+  window.addEventListener(
+    "beforeunload",
+    () => {
+      cancelAnimationFrame(animationFrame);
+    }
+  );
 }
