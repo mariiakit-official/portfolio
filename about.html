@@ -1,87 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Learn about Mariia Kit, her problem-solving approach, strengths, and career direction.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Mariia Kit — QA, business analysis, software development and AI portfolio">
   <title>About | Mariia Kit</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="About | Mariia Kit">
+  <meta property="og:description" content="Mariia Kit — QA, business analysis, software development and AI portfolio">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#07171b">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body data-page="About">
-
-<header class="site-header">
-  <a class="brand" href="index.html" aria-label="Mariia Kit home">
-    <span class="brand-mark" aria-hidden="true">MK</span>
-    <span>Mariia Kit</span>
-  </a>
-
-  <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
-
-  <nav class="main-nav" aria-label="Main navigation">
-    <a data-page="Home" href="index.html">Home</a>
-    <a data-page="About" href="about.html">About</a>
-    <a data-page="Skills" href="skills.html">Skills</a>
-    <a data-page="Projects" href="projects.html">Projects</a>
-    <a data-page="Experience" href="experience.html">Experience</a>
-    <a data-page="Contact" href="contact.html">Contact</a>
-  </nav>
-
-  <div class="header-actions">
-    <a class="icon-link" href="https://github.com/mariiakit-official" target="_blank" rel="noreferrer">GitHub</a>
-    <a class="icon-link" href="https://www.linkedin.com/in/mariia-kit-profile" target="_blank" rel="noreferrer">LinkedIn</a>
-    <span class="resume-link is-disabled" title="Resume will be added later">Resume soon</span>
-  </div>
-</header>
-
-
-<main class="page-shell">
-  <section class="page-header">
-    <p class="eyebrow">ABOUT ME</p>
-    <h1>I’m curious about the <span>why behind the answer.</span></h1>
-    <p>I didn’t choose technology because I wanted to memorize steps. I chose it because I like solving problems, asking questions, and understanding what is happening behind the screen.</p>
-  </section>
-
-  <section class="about-layout">
-    <div class="portrait-card">
-      <div class="portrait-placeholder" role="img" aria-label="Placeholder for Mariia Kit's future profile photo">
-        <span>MK</span>
+  <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">MK</span><span>Mariia
+        Kit</span></a><button class="menu-toggle" type="button" aria-label="Toggle navigation"
+      aria-expanded="false">☰</button>
+    <nav class="main-nav" aria-label="Main navigation"><a data-page="Home" href="index.html">Home</a><a
+        data-page="About" href="about.html">About</a><a data-page="Skills" href="skills.html">Skills</a><a
+        data-page="Projects" href="projects.html">Projects</a><a data-page="Contact" href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions"><a href="https://github.com/mariiakit-official" target="_blank"
+        rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/mariia-kit-profile" target="_blank"
+        rel="noopener noreferrer">LinkedIn</a><a class="resume-link" href="resume.pdf" target="_blank"
+        rel="noopener">Resume</a></div>
+  </header>
+  <main>
+    <section class="page-intro container about-intro">
+      <div class="about-photo" aria-hidden="true"><span>MK</span></div>
+      <div class="about-text">
+        <p class="eyebrow">ABOUT ME</p>
+        <h1>Curious by nature, <em>careful by practice.</em></h1>
+        <p class="page-lead">I’m building a career where quality, analysis, and development meet: understanding the
+          problem first, then testing and building until the solution really works.</p>
       </div>
-      <p class="portrait-note"><strong>Your photo goes here.</strong><br>Later, replace <code>images/profile-placeholder.svg</code> with your photo or update the image path.</p>
+    </section>
+    <section class="container section-space compact">
+      <div class="card-grid">
+        <article class="card"><span class="card-number">01 / HOW I THINK</span>
+          <h2>Problem first</h2>
+          <p>Before I write code or a test case, I want to know who the user is and what is actually going wrong. That
+            habit comes from business analysis and makes everything I build easier to explain.</p>
+        </article>
+        <article class="card"><span class="card-number">02 / HOW I WORK</span>
+          <h2>Test, learn, improve</h2>
+          <p>QA taught me to look for what could break. I write test cases, investigate defects, and treat every bug as
+            information about how a system really behaves.</p>
+        </article>
+        <article class="card"><span class="card-number">03 / WHAT I BUILD</span>
+          <h2>Practical software</h2>
+          <p>I work with Java, SQL, HTML, CSS, and Git, with hands-on exposure to Spring Boot through an accounting
+            application built on PostgreSQL.</p><a class="text-link" href="projects.html">See my projects →</a>
+        </article>
+        <article class="card"><span class="card-number">04 / WHAT’S NEXT</span>
+          <h2>AI with purpose</h2>
+          <p>I’m exploring how AI and cybersecurity can solve real everyday problems, and I’m working toward a flagship
+            project that does exactly that.</p><a class="text-link" href="contact.html">Let’s talk →</a>
+        </article>
+      </div>
+    </section>
+    <section class="container section-space hobbies">
+      <p class="eyebrow">OUTSIDE OF WORK</p>
+      <h2>What keeps me <span>curious.</span></h2>
+      <div class="hobby-grid">
+        <article class="card hobby-card"><svg class="hobby-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+            stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 8h4a2 2 0 1 1 4 0h4v4a2 2 0 1 1 0 4v4h-4a2 2 0 1 0-4 0H4v-4a2 2 0 1 0 0-4z" />
+          </svg>
+          <h3>Puzzles</h3>
+          <p>I love the moment scattered pieces start to make sense. It’s the same feeling as finally tracking down a
+            bug.</p>
+        </article>
+        <article class="card hobby-card"><svg class="hobby-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+            stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13" cy="4.5" r="1.8" />
+            <path d="M11 9l-2 5 3 2 1 5" />
+            <path d="M11 9l3-1 2 3 3 1" />
+            <path d="M9 14l-2 7" />
+          </svg>
+          <h3>Walking</h3>
+          <p>Long walks are where I think best, often at the Morton Arboretum in Lisle. I usually come back with the
+            answer to something I was stuck on.</p>
+        </article>
+        <article class="card hobby-card"><svg class="hobby-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+            stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 19c0-8 6-14 15-14 0 9-6 15-14 15" />
+            <path d="M5 19c3-4 6-7 10-9" />
+          </svg>
+          <h3>Nature</h3>
+          <p>Forests, lakes, and quiet trails recharge me. Fort Sheridan Forest Preserve is a favorite. It’s no accident
+            there’s an owl on my homepage.</p>
+        </article>
+        <article class="card hobby-card"><svg class="hobby-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+            stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 5.5C6.5 4.5 9.5 4.5 12 6c2.5-1.5 5.5-1.5 8-.5V19c-2.5-1-5.5-1-8 .5-2.5-1.5-5.5-1.5-8-.5z" />
+            <path d="M12 6v13.5" />
+          </svg>
+          <h3>Reading</h3>
+          <p>Books keep me curious and give me new ways of looking at people and problems. Favorites: <cite>The Old Man
+              and the Sea</cite>, <cite>Where Rainbows End</cite>, and the Bible.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner"><span>© 2026 Mariia Kit · Built with curiosity and persistence.</span>
+      <div><a href="https://github.com/mariiakit-official">GitHub</a><a
+          href="https://www.linkedin.com/in/mariia-kit-profile">LinkedIn</a><a href="mailto:mkit@icstars.org">Email</a>
+      </div>
     </div>
-
-    <div class="about-copy">
-      <article class="card">
-        <h2>How I work</h2>
-        <p>I’m detail-oriented and persistent. When I see an error, I don’t see it as the end of the task. I see it as one step closer to understanding the answer.</p>
-        <p>I usually like to try solving a problem independently first. I’ve also been working on asking for help sooner when I’m stuck, because good teamwork is not about doing everything alone.</p>
-      </article>
-
-      <article class="card">
-        <h2>Where I’m going</h2>
-        <p>I’m especially interested in Quality Assurance, Business Analysis, software development, and AI. I enjoy work where I can investigate, test assumptions, organize information, and improve how something works for the user.</p>
-        <p>My goal is not to look like I know everything. My goal is to show how I think, what I’ve built, what I’ve learned, and how quickly I can grow.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="values-grid">
-    <article class="mini-card"><strong>Curious</strong><p>I ask “why?” until the problem makes sense.</p></article>
-    <article class="mini-card"><strong>Detail-oriented</strong><p>I notice inconsistencies and want to understand their cause.</p></article>
-    <article class="mini-card"><strong>Persistent</strong><p>I keep working through errors instead of giving up at the first failed attempt.</p></article>
-    <article class="mini-card"><strong>Reliable</strong><p>If I take responsibility for something, I want it completed well.</p></article>
-  </section>
-</main>
-
-
-<footer class="site-footer">
-  <p>© 2026 Mariia Kit · Built with curiosity and persistence.</p>
-  <div>
-    <a href="https://github.com/mariiakit-official" target="_blank" rel="noreferrer">GitHub</a>
-    <a href="https://www.linkedin.com/in/mariia-kit-profile" target="_blank" rel="noreferrer">LinkedIn</a>
-    <a href="mailto:mkit@icstarts.org">Email</a>
-  </div>
-</footer>
-
-<script src="script.js"></script>
+  </footer>
+  <script src="script.js"></script>
 </body>
+
 </html>
