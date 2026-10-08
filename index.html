@@ -1,57 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Mariia Kit portfolio: QA, business analysis, software development, and AI.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Mariia Kit — QA, business analysis, software development and AI portfolio">
   <title>Home | Mariia Kit</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Home | Mariia Kit">
+  <meta property="og:description" content="Mariia Kit — QA, business analysis, software development and AI portfolio">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#07171b">
+  <link rel="preload" as="image" href="images/forest-bg.webp" fetchpriority="high">
+  <script>try {
+      if (!sessionStorage.getItem("owlIntro") && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("owl-intro");
+        setTimeout(function () {
+          document.documentElement.classList
+          .remove("owl-intro")
+        }, 9000)
+      }
+    } catch (e) { }
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body data-page="Home">
-<header class="site-header">
-  <a class="brand" href="index.html"><span class="brand-mark">MK</span><span>Mariia Kit</span></a>
-  <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
-  <nav class="main-nav" aria-label="Main navigation">
-    <a data-page="Home" href="index.html">Home</a>
-    <a data-page="About" href="about.html">About</a>
-    <a data-page="Skills" href="skills.html">Skills</a>
-    <a data-page="Projects" href="projects.html">Projects</a>
-    <a data-page="Contact" href="contact.html">Contact</a>
-  </nav>
-  <div class="header-actions">
-    <a href="https://github.com/mariiakit-official" target="_blank" rel="noreferrer">GitHub</a>
-    <a href="https://www.linkedin.com/in/mariia-kit-profile" target="_blank" rel="noreferrer">LinkedIn</a>
-    <span class="resume-link">Resume soon</span>
-  </div>
-</header>
-<main>
-  <section class="hero">
-    <div class="hero-copy">
-      <p class="eyebrow">HI, I'M</p>
-      <h1>Mariia <span>Kit</span></h1>
-      <p class="hero-lead">I solve problems, test ideas, and build technology with purpose.</p>
-      <div class="hero-actions">
-        <a class="btn primary" href="projects.html">View My Projects →</a>
-        <a class="btn secondary" href="about.html">About Me</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">MK</span>
+      <span>Mariia Kit</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a data-page="Home" href="index.html">Home</a>
+      <a data-page="About" href="about.html">About</a>
+      <a data-page="Skills" href="skills.html">Skills</a>
+      <a data-page="Projects" href="projects.html">Projects</a>
+      <a data-page="Contact" href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="https://github.com/mariiakit-official" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/mariia-kit-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="resume-link" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="owl-stage" role="img" aria-label="A snowy owl perched on a mossy log in a moonlit forest">
+        <img class="owl-part owl-bg" src="images/forest-bg.webp" alt="" width="1536" height="1024" fetchpriority="high">
+        <img class="owl-part owl-body" src="images/owl-body.webp" alt="" width="1536" height="1024" decoding="async">
+        <img class="owl-part owl-wing" src="images/owl-wing.webp" alt="" width="1536" height="1024" decoding="async">
+        <div class="owl-head">
+          <img class="owl-part" src="images/owl-head.webp" alt="" width="1536" height="1024" decoding="async">
+          <span class="owl-lid lid-left"></span>
+          <span class="owl-lid lid-right">
+          </span>
+        </div>
       </div>
-      <p class="hero-sub">QA <b>•</b> BUSINESS ANALYSIS <b>•</b> SOFTWARE DEVELOPMENT <b>•</b> AI</p>
+      <div class="flyer" aria-hidden="true">
+        <img src="images/flight/fly1.webp" data-frame="fly1" alt="" width="1011" height="796" decoding="async">
+        <img src="images/flight/fly2.webp" data-frame="fly2" alt="" width="1011" height="796" decoding="async">
+        <img src="images/flight/fly3.webp" data-frame="fly3" alt="" width="1011" height="796" decoding="async">
+        <img src="images/flight/fly4.webp" data-frame="fly4" alt="" width="1011" height="796" decoding="async">
+        <img src="images/flight/land1.webp" data-frame="land1" alt="" width="1011" height="796" decoding="async">
+        <img src="images/flight/land2.webp" data-frame="land2" alt="" width="1011" height="796" decoding="async">
+      </div>
+      <button class="owl-hit" type="button" aria-label="Make the owl fly">
+      </button>
+      <div class="hero-copy">
+        <p class="eyebrow">HI, I'M</p>
+        <h1>Mariia <span>Kit</span></h1>
+        <p class="hero-lead">I solve problems, test ideas, and build technology with purpose.</p>
+        <div class="hero-actions"><a class="btn primary" href="projects.html">View My Projects →</a><a
+            class="btn secondary" href="about.html">About Me</a></div>
+        <p class="hero-sub">QA · BUSINESS ANALYSIS · SOFTWARE DEVELOPMENT · AI</p>
+      </div>
+    </section>
+    <section class="container section-space">
+      <p class="eyebrow">WHAT I'M BUILDING</p>
+      <h2>I learn best by <span>solving something real.</span></h2>
+      <p class="section-lead">Explore the projects, skills, and ideas that shape my work.</p>
+      <div class="card-grid"><a class="card card-link" href="projects.html">
+          <span class="card-number">01 / PROJECTS</span>
+          <h3>Practical projects</h3>
+          <p>Work I can explain, test, and improve.</p><span class="text-link">Explore projects →</span>
+        </a><a class="card card-link" href="skills.html"><span class="card-number">02 / SKILLS</span>
+          <h3>How I work</h3>
+          <p>Quality assurance, development, analysis, and continuous learning.</p><span class="text-link">Explore
+            skills →</span>
+        </a></div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner"><span>© 2026 Mariia Kit · Built with curiosity and persistence.</span>
+      <div><a href="https://github.com/mariiakit-official">GitHub</a><a
+          href="https://www.linkedin.com/in/mariia-kit-profile">LinkedIn</a><a href="mailto:mkit@icstars.org">Email</a>
+      </div>
     </div>
-    <div class="owl-stage" id="owlStage">
-      <img id="owl" src="owl.png" alt="Snowy owl in a moonlit forest">
-    </div>
-    <a class="scroll-cue" href="#featured" aria-label="Scroll down">↓</a>
-  </section>
-  <section id="featured" class="home-intro">
-    <p class="eyebrow accent">WHAT I'M BUILDING</p>
-    <h2>I learn best by <span>solving something real.</span></h2>
-    <p>My portfolio focuses on the work I can explain, defend, test, and improve—not just a long list of technologies.</p>
-  </section>
-  <section class="featured-grid">
-    <article class="project-card featured"><span class="tag">Featured Project</span><h3>Avalon Accounting Application</h3><p>A full-stack accounting application built with Java and Spring Boot.</p><div class="tech-row"><span>Java 17</span><span>Spring Boot</span><span>PostgreSQL</span><span>Thymeleaf</span></div><a class="text-link" href="accounting-project.html">View case study →</a></article>
-    <article class="project-card"><span class="tag subtle">Next Flagship Project</span><h3>Individual Tech Project</h3><p>A useful, technically interesting project designed for the tech expo.</p><div class="tech-row"><span>AI</span><span>Security</span><span>Problem Solving</span></div><a class="text-link" href="projects.html">Follow the project →</a></article>
-  </section>
-</main>
-<footer class="site-footer">© 2026 Mariia Kit · Built with curiosity and persistence.</footer>
-<script src="script.js"></script>
+  </footer>
+  <script src="script.js">
+  </script>
 </body>
+
 </html>
