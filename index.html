@@ -12,62 +12,45 @@
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#07171b">
   <link rel="preload" as="image" href="images/forest-bg.webp" fetchpriority="high">
-  <script>try {
-      if (!sessionStorage.getItem("owlIntro") && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        document.documentElement.classList.add("owl-intro");
-        setTimeout(function () {
-          document.documentElement.classList
-          .remove("owl-intro")
-        }, 9000)
-      }
-    } catch (e) { }
-  </script>
+  <script>try { if (!sessionStorage.getItem("owlIntro") && !matchMedia("(prefers-reduced-motion: reduce)").matches) { document.documentElement.classList.add("owl-intro"); setTimeout(function () { document.documentElement.classList.remove("owl-intro") }, 9000) } } catch (e) { }</script>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body data-page="Home">
-  <header class="site-header">
-    <a class="brand" href="index.html">
-      <span class="brand-mark">MK</span>
-      <span>Mariia Kit</span>
-    </a>
-    <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-    <nav class="main-nav" aria-label="Main navigation">
-      <a data-page="Home" href="index.html">Home</a>
-      <a data-page="About" href="about.html">About</a>
-      <a data-page="Skills" href="skills.html">Skills</a>
-      <a data-page="Projects" href="projects.html">Projects</a>
-      <a data-page="Contact" href="contact.html">Contact</a>
+  <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">MK</span><span>Mariia
+        Kit</span></a><button class="menu-toggle" type="button" aria-label="Toggle navigation"
+      aria-expanded="false">☰</button>
+    <nav class="main-nav" aria-label="Main navigation"><a data-page="Home" href="index.html">Home</a><a
+        data-page="About" href="about.html">About</a><a data-page="Skills" href="skills.html">Skills</a><a
+        data-page="Projects" href="projects.html">Projects</a><a data-page="Contact" href="contact.html">Contact</a>
     </nav>
-    <div class="header-actions">
-      <a href="https://github.com/mariiakit-official" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://www.linkedin.com/in/mariia-kit-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a class="resume-link" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
-    </div>
+    <div class="header-actions"><a href="https://github.com/mariiakit-official" target="_blank"
+        rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/in/mariia-kit-profile" target="_blank"
+        rel="noopener noreferrer">LinkedIn</a><a class="resume-link" href="resume.pdf" target="_blank"
+        rel="noopener">Resume</a></div>
   </header>
   <main>
     <section class="hero">
-      <div class="owl-stage" role="img" aria-label="A snowy owl perched on a mossy log in a moonlit forest">
-        <img class="owl-part owl-bg" src="images/forest-bg.webp" alt="" width="1536" height="1024" fetchpriority="high">
-        <img class="owl-part owl-body" src="images/owl-body.webp" alt="" width="1536" height="1024" decoding="async">
-        <img class="owl-part owl-wing" src="images/owl-wing.webp" alt="" width="1536" height="1024" decoding="async">
-        <div class="owl-head">
-          <img class="owl-part" src="images/owl-head.webp" alt="" width="1536" height="1024" decoding="async">
-          <span class="owl-lid lid-left"></span>
-          <span class="owl-lid lid-right">
-          </span>
+      <div class="owl-stage" role="img" aria-label="A snowy owl perched on a mossy log in a moonlit forest"><img
+          class="owl-part owl-bg" src="images/forest-bg.webp" alt="" width="1536" height="1024" fetchpriority="high">
+        <div class="owl-figure"><img class="owl-part owl-body" src="images/owl-body.webp" alt="" width="1536"
+            height="1024" decoding="async"><img class="owl-part owl-wing" src="images/owl-wing.webp" alt="" width="1536"
+            height="1024" decoding="async">
+          <div class="owl-head"><img class="owl-part" src="images/owl-head.webp" alt="" width="1536" height="1024"
+              decoding="async"><img class="owl-part owl-head-closed" src="images/owl-head-closed.webp" alt=""
+              width="1536" height="1024" decoding="async"></div>
         </div>
       </div>
-      <div class="flyer" aria-hidden="true">
-        <img src="images/flight/fly1.webp" data-frame="fly1" alt="" width="1011" height="796" decoding="async">
-        <img src="images/flight/fly2.webp" data-frame="fly2" alt="" width="1011" height="796" decoding="async">
-        <img src="images/flight/fly3.webp" data-frame="fly3" alt="" width="1011" height="796" decoding="async">
-        <img src="images/flight/fly4.webp" data-frame="fly4" alt="" width="1011" height="796" decoding="async">
-        <img src="images/flight/land1.webp" data-frame="land1" alt="" width="1011" height="796" decoding="async">
-        <img src="images/flight/land2.webp" data-frame="land2" alt="" width="1011" height="796" decoding="async">
-      </div>
-      <button class="owl-hit" type="button" aria-label="Make the owl fly">
-      </button>
+      <div class="flyer" aria-hidden="true"><img src="images/flight/front1.webp" data-frame="front1" alt="" width="1070"
+          height="661" decoding="async"><img src="images/flight/front2.webp" data-frame="front2" alt="" width="1070"
+          height="661" decoding="async"><img src="images/flight/front3.webp" data-frame="front3" alt="" width="1070"
+          height="661" decoding="async"><img src="images/flight/front4.webp" data-frame="front4" alt="" width="1070"
+          height="661" decoding="async"><img src="images/flight/fly1.webp" data-frame="fly1" alt="" width="1011"
+          height="796" decoding="async"><img src="images/flight/fly2.webp" data-frame="fly2" alt="" width="1011"
+          height="796" decoding="async"><img src="images/flight/fly3.webp" data-frame="fly3" alt="" width="1011"
+          height="796" decoding="async"><img src="images/flight/fly4.webp" data-frame="fly4" alt="" width="1011"
+          height="796" decoding="async"></div><button class="owl-hit" type="button"
+        aria-label="Make the owl fly"></button>
       <div class="hero-copy">
         <p class="eyebrow">HI, I'M</p>
         <h1>Mariia <span>Kit</span></h1>
@@ -81,8 +64,8 @@
       <p class="eyebrow">WHAT I'M BUILDING</p>
       <h2>I learn best by <span>solving something real.</span></h2>
       <p class="section-lead">Explore the projects, skills, and ideas that shape my work.</p>
-      <div class="card-grid"><a class="card card-link" href="projects.html">
-          <span class="card-number">01 / PROJECTS</span>
+      <div class="card-grid"><a class="card card-link" href="projects.html"><span class="card-number">01 /
+            PROJECTS</span>
           <h3>Practical projects</h3>
           <p>Work I can explain, test, and improve.</p><span class="text-link">Explore projects →</span>
         </a><a class="card card-link" href="skills.html"><span class="card-number">02 / SKILLS</span>
@@ -99,8 +82,7 @@
       </div>
     </div>
   </footer>
-  <script src="script.js">
-  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
