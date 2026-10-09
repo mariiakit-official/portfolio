@@ -90,7 +90,7 @@ if (hero && stage && head) {
         ty = Math.sin(t / 3100) * 0.4;
       }
       x += (tx - x) * 0.09; y += (ty - y) * 0.09;
-      head.style.transform = `translate3d(${x * 0.5}%, ${y * 0.45}%, 0) rotate(${x * 9}deg)`;
+      head.style.transform = `translate3d(${x * 0.28}%, ${y * 0.25}%, 0) rotate(${x * 5}deg)`;
       if (flight) flight.tick();
       if (visible) requestAnimationFrame(frame); else running = false;
     }
