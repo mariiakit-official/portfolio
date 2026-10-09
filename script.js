@@ -80,7 +80,7 @@ if (hero && stage && head) {
 
     function frame(t) {
       const fp = flight && flight.pos();
-      if (fp) {                               // watch the owl flying past
+      if (fp && t - lastPointer > 1500) {     // mouse still: watch the owl flying past
         const r = stage.getBoundingClientRect(), h = hero.getBoundingClientRect();
         const fx = r.left + HEAD.x * r.width, fy = r.top + HEAD.y * r.height;
         tx = Math.max(-1, Math.min(1, (h.left + fp.x - fx) / (window.innerWidth * 0.35)));
@@ -89,8 +89,8 @@ if (hero && stage && head) {
         tx = Math.sin(t / 2300) * 0.7 + Math.sin(t / 900) * 0.15;
         ty = Math.sin(t / 3100) * 0.4;
       }
-      x += (tx - x) * 0.07; y += (ty - y) * 0.07;
-      head.style.transform = `translate3d(${x * 0.35}%, ${y * 0.3}%, 0) rotate(${x * 5}deg)`;
+      x += (tx - x) * 0.09; y += (ty - y) * 0.09;
+      head.style.transform = `translate3d(${x * 0.5}%, ${y * 0.45}%, 0) rotate(${x * 9}deg)`;
       if (flight) flight.tick();
       if (visible) requestAnimationFrame(frame); else running = false;
     }
