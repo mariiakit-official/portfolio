@@ -31,7 +31,8 @@ if (hero && stage && head) {
   const HEAD = { x: 0.479, y: 0.40 };   // face centre, used for aiming
   const mobile = window.matchMedia("(max-width: 700px)");
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const geo = { left: 0, top: 0, w: 0, h: 0, W: 0, H: 0, ftop: 0, k: 1 }; // k = screen px per artwork px
+  const geo = { left: 0, top: 0, w: 0, h: 0, W: 0, H: 0, ftop: 0, k: 1, os: 1 };
+  const PIVOT = { x: 0.495 * IMG_W, y: 0.84 * IMG_H };   // .owl-figure scales around the feet // k = screen px per artwork px
 
   // Size the stage so it covers the hero (like background-size: cover),
   // then slide it so the owl lands at --owl-x / --owl-y without exposing edges.
@@ -51,7 +52,8 @@ if (hero && stage && head) {
     const y = top + clamp(py * H - OWL.y * h, H - h, 0);
     Object.assign(stage.style, { left: `${left}px`, top: `${y}px`, width: `${w}px`, height: `${h}px`, right: "auto", bottom: "auto" });
     hero.style.setProperty("--frame-top", `${top}px`);
-    Object.assign(geo, { left, top: y, w, h, W, H: hero.clientHeight, ftop: top, k: w / IMG_W });
+    const os = parseFloat(css.getPropertyValue("--owl-scale")) || 1;
+    Object.assign(geo, { left, top: y, w, h, W, H: hero.clientHeight, ftop: top, k: w / IMG_W, os });
     if (flight) flight.resize();
   }
 
@@ -102,8 +104,11 @@ if (hero && stage && head) {
     // Sprite geometry, in artwork pixels (see images/flight/*.webp, all cut to one cell).
     const CELL = { w: 1588, h: 1250 };          // cell size at full (landed) size
     const EYE = { x: 1052.4, y: 658.3 };        // eye position inside the cell = anchor
-    // Landing: the wings-folding frame is centred on the perched owl's body, then cross-fades into it.
-    const LAND2 = sc => ({ sp: "s", x: 742 + 361 * sc, y: 580 - 146 * sc });
+    // Front-facing landing frames (images/flight/front1-4.webp) share their own cell, anchored between the eyes.
+    const FCELL = { w: 1404.7, h: 867.8 }, FEYE = { x: 700.2, y: 390.0 };
+    const FEET = { x: 765, y: 845 };                       // perched owl's feet on the log
+    const FFEET = { front3: [9.6, 419.2], front4: [5.6, 470.0] };
+    const onLog = (f, sc) => ({ sp: "s", x: FEET.x - FFEET[f][0] * sc, y: FEET.y - FFEET[f][1] * sc });
     const FLAP = ["fly1", "fly2", "fly3", "fly4"];
     const FLAP_MS = 95;
 
@@ -113,21 +118,22 @@ if (hero && stage && head) {
     // "h" points live inside the picture area (on phones that is below the text).
     const toPx = p => p.sp === "h"
       ? [p.x * geo.W, geo.ftop + p.y * (geo.H - geo.ftop)]
-      : [geo.left + p.x * geo.k, geo.top + p.y * geo.k];
+      : [geo.left + (PIVOT.x + (p.x - PIVOT.x) * geo.os) * geo.k, geo.top + (PIVOT.y + (p.y - PIVOT.y) * geo.os) * geo.k];
 
     // Each step: duration, start/end point, optional curve point, size, direction, frames.
+    // Intro / return: far away over the lake, flying straight at the camera, landing on the log.
     const approach = [
-      { ms: 1600, a: H(-0.08, 0.06), c: H(0.3, 0.1), b: H(0.58, 0.3), s: [0.15, 0.24], pose: "flap" },
-      { ms: 900, a: H(0.58, 0.3), c: H(0.68, 0.34), b: A(840, 470), s: [0.24, 0.3], pose: "glide" },
-      { ms: 480, a: A(840, 470), b: A(920, 520), s: [0.3, 0.36], pose: "flap" },
-      { ms: 360, a: A(920, 520), b: A(985, 530), s: [0.38, 0.46], pose: ["land1"] },
-      { ms: 260, a: A(985, 530), b: LAND2(0.6), s: [0.5, 0.6], pose: ["land2"], perch: true },
+      { ms: 1300, a: A(1160, 360), c: A(1080, 330), b: A(940, 360), s: [0.1, 0.32], pose: "fflap" },
+      { ms: 520, a: A(940, 360), b: A(855, 385), s: [0.32, 0.52], pose: ["front1"] },
+      { ms: 380, a: A(855, 385), b: A(800, 400), s: [0.52, 0.66], pose: ["front2"] },
+      { ms: 300, a: A(800, 400), b: onLog("front3", 0.84), s: [0.72, 0.84], pose: ["front3"] },
+      { ms: 340, a: onLog("front3", 0.84), b: onLog("front4", 0.9), s: [0.88, 0.9], pose: ["front4"], perch: true },
     ];
     const takeoff = [
-      { ms: 260, a: LAND2(0.6), b: LAND2(0.6), s: [0.6, 0.56], pose: ["land2"], leave: true },
-      { ms: 300, a: LAND2(0.6), b: A(1040, 470), s: [0.46, 0.4], pose: ["land1"] },
-      { ms: 1400, a: A(1040, 470), c: H(0.95, 0.2), b: H(1.2, 0.0), s: [0.4, 0.22], pose: "flap" },
-      { ms: 700, hidden: true },
+      { ms: 260, a: onLog("front4", 0.9), b: onLog("front4", 0.9), s: [0.9, 0.88], pose: ["front4"], leave: true },
+      { ms: 260, a: onLog("front3", 0.82), b: A(790, 380), s: [0.82, 0.72], pose: ["front3"] },
+      { ms: 1400, a: A(790, 380), c: A(920, 320), b: A(1120, 300), s: [0.66, 0.1], pose: "fflap" },
+      { ms: 600, hidden: true },
       // back across the sky, right to left, small and far away (passes the moon)
       { ms: 4400, a: H(1.12, 0.2), c: H(0.5, 0.12), b: H(-0.15, 0.26), s: [0.14, 0.17], pose: "cruise", dir: -1 },
       { ms: 900, hidden: true },
@@ -140,11 +146,15 @@ if (hero && stage && head) {
       flyer.style.width = `${cell.w}px`;
       flyer.style.height = `${cell.h}px`;
       flyer.style.transformOrigin = `${EYE.x * geo.k}px ${EYE.y * geo.k}px`;
+      for (const [name, im] of Object.entries(imgs)) {     // front frames: own cell, same anchor point
+        const front = name.startsWith("front");
+        const c = front ? FCELL : CELL, e = front ? FEYE : EYE;
+        Object.assign(im.style, { left: `${(EYE.x - e.x) * geo.k}px`, top: `${(EYE.y - e.y) * geo.k}px`,
+          width: `${c.w * geo.k}px`, height: `${c.h * geo.k}px`, right: "auto", bottom: "auto" });
+      }
       if (hit) {   // clickable area over the perched owl
-        Object.assign(hit.style, {
-          left: `${geo.left + 560 * geo.k}px`, top: `${geo.top + 280 * geo.k}px`,
-          width: `${380 * geo.k}px`, height: `${560 * geo.k}px`
-        });
+        const [x0, y0] = toPx(A(560, 280)), [x1, y1] = toPx(A(940, 840));
+        Object.assign(hit.style, { left: `${x0}px`, top: `${y0}px`, width: `${x1 - x0}px`, height: `${y1 - y0}px` });
       }
     }
 
@@ -198,12 +208,13 @@ if (hero && stage && head) {
 
       const p = el / st.ms, e = st.pose === "cruise" ? p : ease(p);
       const [x, y] = bez(st.a, st.c, st.b, e);
-      const s = lerp(st.s[0], st.s[1], e);
+      const s = lerp(st.s[0], st.s[1], e) * geo.os;
       const dir = st.dir || 1;
 
       let f;
       if (Array.isArray(st.pose)) f = st.pose[0];
       else if (st.pose === "glide") f = "fly2";
+      else if (st.pose === "fflap") f = Math.floor(el / 150) % 2 ? "front2" : "front1";
       else if (st.pose === "cruise") {        // flap a few beats, then glide, repeat
         const beat = (el % 1600);
         f = beat < FLAP_MS * 8 ? FLAP[Math.floor(beat / FLAP_MS) % 4] : "fly2";
@@ -211,7 +222,7 @@ if (hero && stage && head) {
       show(f);
 
       // bank slightly with vertical speed
-      if (lastY !== null && !Array.isArray(st.pose)) tilt = lerp(tilt, Math.max(-10, Math.min(10, (y - lastY) * 1.6)), 0.15);
+      if (lastY !== null && st.pose !== "fflap" && !Array.isArray(st.pose)) tilt = lerp(tilt, Math.max(-10, Math.min(10, (y - lastY) * 1.6)), 0.15);
       else tilt = lerp(tilt, 0, 0.3);
       lastY = y;
 
