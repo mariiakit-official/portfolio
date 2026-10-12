@@ -1,3 +1,6 @@
+# Original AI renders: source files only, not used by the site
+images/owl/
+
 # OS clutter
 Thumbs.db
 Desktop.ini
