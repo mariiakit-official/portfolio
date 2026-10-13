@@ -12,6 +12,7 @@
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#07171b">
   <link rel="preload" as="image" href="images/winter/winter-bg.webp" fetchpriority="high">
+  <script>try{if(!sessionStorage.getItem("owlIntro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("owl-intro")}catch(e){}</script>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -32,11 +33,12 @@
     <section class="hero">
       <div class="owl-stage" role="img" aria-label="A snowy owl perched on a snow-covered pine branch in a winter forest at sunset">
         <img class="owl-part owl-bg" src="images/winter/winter-bg.webp" alt="" width="1672" height="941" fetchpriority="high">
+        <video class="owl-part owl-video" muted playsinline disablepictureinpicture preload="none" aria-hidden="true" tabindex="-1"></video>
         <div class="owl-figure">
           <img class="owl-part owl-perched" src="images/winter/owl-perched.webp" alt="" width="1672" height="941" decoding="async">
           <img class="owl-part owl-blink" src="images/winter/owl-blink.webp" alt="" width="1672" height="941" decoding="async">
         </div>
-        <!-- Fly-in temporarily disabled; it will return as a short video. -->
+        
       </div>
       <div class="hero-copy">
         <p class="eyebrow">HI, I'M</p>

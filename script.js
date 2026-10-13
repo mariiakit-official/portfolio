@@ -60,10 +60,6 @@ if (hero && stage) {
   const wait = ms => new Promise(r => setTimeout(r, ms));
   const rand = (a, b) => a + Math.random() * (b - a);
 
-  // The fly-in entrance is temporarily disabled (it will come back as a short video),
-  // and the head stays upright and facing forward: no head movement.
-  root.classList.remove("owl-intro");
-
   // ---------- Natural blinking: irregular, quick, sometimes a double blink ----------
   async function blinkOnce() { blink.classList.add("on"); await wait(rand(110, 150)); blink.classList.remove("on"); }
   async function blinkLoop() {
@@ -75,8 +71,49 @@ if (hero && stage) {
     }
   }
 
-  if (blink && !reduced) {
+  function startBlinking() {
+    if (!blink || reduced) return;
     // decode the hidden closed-eye frame first so the very first blink is never skipped
     (blink.decode ? blink.decode().catch(() => {}) : Promise.resolve()).then(blinkLoop);
   }
+
+  // ---------- Landing video: first visit of the session only ----------
+  // The video's first frame is the empty branch (same as the background) and its last
+  // frame is the perched owl (same as owl-perched.webp), so nothing jumps at either end.
+  const video = stage.querySelector(".owl-video");
+  const showPerched = () => root.classList.remove("owl-intro");
+
+  function playLanding() {
+    return new Promise(done => {
+      let finished = false;
+      const finish = () => {
+        if (finished) return; finished = true;
+        clearTimeout(giveUp);
+        showPerched();                                   // perched owl fades in over the matching last frame
+        setTimeout(() => {                               // then the video is removed
+          video.classList.remove("playing"); video.pause();
+          video.removeAttribute("src"); video.load();
+        }, 700);
+        done();
+      };
+      const giveUp = setTimeout(finish, 6000);         // slow network or blocked autoplay: just show the owl
+      video.addEventListener("playing", () => { clearTimeout(giveUp); video.classList.add("playing"); }, { once: true });
+      video.addEventListener("ended", () => setTimeout(finish, 350), { once: true });
+      video.addEventListener("error", finish, { once: true });
+      video.muted = true;
+      video.src = "videos/owl-landing.mp4";
+      video.play().catch(finish);
+    });
+  }
+
+  async function start() {
+    if (video && root.classList.contains("owl-intro")) {
+      try { sessionStorage.setItem("owlIntro", "1"); } catch (e) {}
+      await playLanding();
+    } else {
+      showPerched();
+    }
+    startBlinking();
+  }
+  start();
 }
