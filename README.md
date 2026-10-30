@@ -1,4 +1,6 @@
-# portfolio# Mariia Kit Portfolio
+# Mariia Kit Portfolio
+
+**Live site:** https://mariiakit-official.github.io/portfolio/
 
 This is my personal technology portfolio. I created it to show not only the tools and technologies I have worked with, but also how I think, solve problems, learn, and grow.
 
@@ -160,6 +162,13 @@ https://github.com/M555K/Avalon-Accounting-project
 There is also a dedicated project page:
 
 `accounting-project.html`
+
+### My Planetary Responsibility: SOLVE
+
+An interactive 14-slide presentation about my five strengths (detail-oriented, analytical, persistent, curious and organized) and the technology careers they point toward. Built with HTML, CSS and vanilla JavaScript.
+
+- Live presentation: https://mariiakit-official.github.io/one-word-five-gifts/
+- Repository: https://github.com/mariiakit-official/one-word-five-gifts
 
 ### Individual Tech Project
 
